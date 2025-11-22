@@ -1,10 +1,10 @@
+import FormField from "@/components/FormField";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   Alert,
   ImageBackground,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -69,16 +69,14 @@ export default function Index() {
 
         <View className="gap-y-8">
           {/* Input */}
-          <View className="bg-white rounded-full border-2 border-neutral-300 p-5">
-            <TextInput
-              className="text-lg leading-5"
-              placeholder="Type your idea..."
-              placeholderTextColor="#7B7B8B"
-              value={seed}
-              onChangeText={setSeed}
-              editable={!loading}
-            />
-          </View>
+          <FormField
+            placeholder="Type your idea..."
+            placeholderTextColor="#7B7B8B"
+            inputStyle="text-lg leading-5 border-2 border-neutral-300"
+            value={seed}
+            onChangeText={setSeed}
+            editable={!loading}
+          />
           <TouchableOpacity
             disabled={loading}
             onPress={onGenerate}
