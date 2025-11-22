@@ -11,9 +11,6 @@
     "lint": "expo lint"
   },
   "dependencies": {
-    "@ai-sdk/google": "^2.0.36",
-    "@ai-sdk/openai": "^2.0.68",
-    "@ai-sdk/react": "^2.0.95",
     "@expo/vector-icons": "^15.0.3",
     "@google/genai": "^1.30.0",
     "@react-navigation/bottom-tabs": "^7.4.0",
@@ -38,6 +35,7 @@
     "install": "^0.13.0",
     "nativewind": "^4.2.1",
     "npm": "^11.6.2",
+    "openai": "^6.9.1",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "react": "19.1.0",
     "react-dom": "19.1.0",
