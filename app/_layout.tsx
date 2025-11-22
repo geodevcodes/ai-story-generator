@@ -38,7 +38,6 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="story" options={{ headerShown: false }} />
-        <Stack.Screen name="chat" options={{ headerShown: false }} />
         {/* <Stack.Screen name="story" options={{ presentation: 'modal' }} /> */}
       </Stack>
     </QueryClientProvider>
