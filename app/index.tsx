@@ -9,8 +9,6 @@ import {
   View,
 } from "react-native";
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL || "";
-
 export default function Index() {
   const [loading, setLoading] = useState<boolean>(false);
   const [seed, setSeed] = useState<string>("");
@@ -22,22 +20,24 @@ export default function Index() {
       return;
     }
     try {
-      router.push("/chat");
       setLoading(true);
-      const res = await fetch(`${API_URL}/api/story`, {
+      const res = await fetch("/aistory", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify({ seed }),
       });
-      console.log(res, "this is res gotten===");
-      if (!res.ok) throw new Error("Failed to generate the story");
+      if (!res.ok) {
+        throw new Error("Failed to generate the story");
+      }
       const data = await res.json();
-      console.log(data.story, "this is story here==");
+      console.log("Generated story:", data.story);
       router.push({
         pathname: "/story",
-        params: { story: JSON.stringify(data.story) },
+        params: {
+          story: encodeURIComponent(JSON.stringify(data.story)),
+        },
       });
     } catch (error) {
       Alert.alert("Error", (error as Error).message);
@@ -54,7 +54,6 @@ export default function Index() {
     >
       <View className="flex-1 p-6 justify-center gap-y-20">
         <View className="gap-y-2">
-          {/* Hero */}
           <View>
             <Text className="text-5xl font-semibold text-center text-white">
               AI That Writes
@@ -86,7 +85,7 @@ export default function Index() {
             className="bg-sky-700 justify-center items-center p-4 rounded-full"
           >
             <Text className="text-white font-semibold text-xl">
-              {loading ? "Generating" : "Generate Story"}
+              {loading ? "Generating..." : "Generate Story"}
             </Text>
           </TouchableOpacity>
         </View>
